@@ -4,4 +4,4 @@ namespace core {
         inflation,
         interest_rate
     };
-}
+};
