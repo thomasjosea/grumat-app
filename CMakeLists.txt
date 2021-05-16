@@ -1,13 +1,47 @@
+project(grumat)
+
 cmake_minimum_required(VERSION 3.20)
+
+include(FetchContent)
 
 set(CMAKE_CXX_STANDARD 14)
 
-project(grumat)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.10.0.zip
+)
 
-file(GLOB SOURCES
-    include/*h
-    include/*.cpp)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 
 add_compile_options(-Wall -Wextra -pedantic)
 
-add_executable(grumat main.cc ${SOURCES})
+file(GLOB SOURCES
+    src/asset_indexer.h
+    src/portfolio_asset.cpp
+    src/portfolio_asset.h
+)
+
+file(GLOB TEST_FILES
+    src/portfolio_asset_test.cc
+)
+
+add_executable(grumat 
+    main.cc
+    ${SOURCES}
+)
+
+enable_testing()
+
+add_executable(tests 
+    ${SOURCES}
+    ${TEST_FILES}
+)
+
+target_link_libraries(tests gtest_main)
+
+include(GoogleTest)
+
+gtest_discover_tests(tests)
+
