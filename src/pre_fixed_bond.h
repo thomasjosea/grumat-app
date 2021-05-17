@@ -4,7 +4,7 @@
 using std::chrono::steady_clock;
 
 namespace core {
-    class portfolio_asset {
+    class pre_fixed_bond {
         private:
             float _principal;
             float _annual_interest_rate;
@@ -12,8 +12,8 @@ namespace core {
             steady_clock::time_point _expiry_date;
 
         public:
-            portfolio_asset(float principal, float annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date);
-            ~portfolio_asset();
+            pre_fixed_bond(float principal, float annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date);
+            ~pre_fixed_bond();
             float price_at(const steady_clock::time_point& now) const;
             bool is_expired(const steady_clock::time_point& now) const;
     };

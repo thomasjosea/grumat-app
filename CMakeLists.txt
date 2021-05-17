@@ -19,12 +19,12 @@ add_compile_options(-Wall -Wextra -pedantic)
 
 file(GLOB SOURCES
     src/asset_indexer.h
-    src/portfolio_asset.cpp
-    src/portfolio_asset.h
+    src/pre_fixed_bond.cpp
+    src/pre_fixed_bond.h
 )
 
 file(GLOB TEST_FILES
-    src/portfolio_asset_test.cpp
+    src/pre_fixed_bond.cpp
 )
 
 add_executable(grumat 

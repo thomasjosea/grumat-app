@@ -1,9 +1,9 @@
-#include "portfolio_asset.h"
+#include "pre_fixed_bond.h"
 #include "math.h"
 
 using namespace std::chrono;
 
-float core::portfolio_asset::price_at(const steady_clock::time_point& now) const {
+float core::pre_fixed_bond::price_at(const steady_clock::time_point& now) const {
     if (now < _effective_date) {
         return 0;
     }
@@ -15,15 +15,15 @@ float core::portfolio_asset::price_at(const steady_clock::time_point& now) const
     return _principal * pow(1 + _annual_interest_rate / 100, elapsed_time_in_years);
 }
 
-bool core::portfolio_asset::is_expired(const steady_clock::time_point& now) const {
+bool core::pre_fixed_bond::is_expired(const steady_clock::time_point& now) const {
     return now > _expiry_date;
 }
 
-core::portfolio_asset::portfolio_asset(float principal, float annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date) 
+core::pre_fixed_bond::pre_fixed_bond(float principal, float annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date) 
     : _principal{principal},
     _annual_interest_rate{annual_interest_rate},
     _effective_date{effective_date},
     _expiry_date{expiry_date} {
 }
 
-core::portfolio_asset::~portfolio_asset() {}
+core::pre_fixed_bond::~pre_fixed_bond() {}
