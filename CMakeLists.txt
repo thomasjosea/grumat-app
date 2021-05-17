@@ -24,11 +24,11 @@ file(GLOB SOURCES
 )
 
 file(GLOB TEST_FILES
-    src/portfolio_asset_test.cc
+    src/portfolio_asset_test.cpp
 )
 
 add_executable(grumat 
-    main.cc
+    main.cpp
     ${SOURCES}
 )
 
