@@ -9,7 +9,7 @@ core::simple_exponential_indexer::simple_exponential_indexer(steady_clock::time_
     _year_growth{year_growth}
 {}
 
-double core::simple_exponential_indexer::evaluate_at(const steady_clock::time_point& time_point) {
+double core::simple_exponential_indexer::evaluate_at(const steady_clock::time_point& time_point) const {
     if (time_point < _series_start_date) {
         return 0;
     }

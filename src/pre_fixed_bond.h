@@ -1,4 +1,6 @@
+#pragma once
 #include "asset_indexer.h"
+#include "simple_exponential_indexer.h"
 #include <chrono>
 
 using std::chrono::steady_clock;
@@ -7,8 +9,7 @@ namespace core {
     class pre_fixed_bond {
         private:
             float _principal;
-            float _annual_interest_rate;
-            steady_clock::time_point _effective_date;
+            simple_exponential_indexer _exponential_growing_indexer;
             steady_clock::time_point _expiry_date;
 
         public:
