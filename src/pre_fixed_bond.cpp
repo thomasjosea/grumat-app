@@ -4,11 +4,10 @@
 using namespace std::chrono;
 
 float core::pre_fixed_bond::price_at(const steady_clock::time_point& now) const {
-    auto max_time = now;
     if (now > _expiry_date) {
-        max_time = _expiry_date;
+        return 0;
     }
-    return _principal * _exponential_growing_indexer.evaluate_at(max_time);
+    return _principal * _exponential_growing_indexer.evaluate_at(now);
 }
 
 bool core::pre_fixed_bond::is_expired(const steady_clock::time_point& now) const {
