@@ -21,5 +21,5 @@ TEST(simple_exponential_indexer, index_after_10_years_grows_exponentially) {
 TEST(simple_exponential_indexer, index_delta_in_2_year_is_20) {
   auto effective_date = steady_clock::now();
   simple_exponential_indexer index{effective_date, 10};
-  EXPECT_EQ(index.get_rate_delta(effective_date, effective_date + one_year * 2), 20);
+  EXPECT_NEAR(index.get_rate_delta(effective_date, effective_date + one_year * 2), 20, 0.0001);
 }

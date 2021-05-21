@@ -26,12 +26,15 @@ file(GLOB SOURCES
     src/simple_exponential_indexer.cpp
     src/indexed_bond.h
     src/indexed_bond.cpp
+    src/interest_rate.h
+    src/interest_rate.cpp
 )
 
 file(GLOB TEST_FILES
     src/pre_fixed_bond_test.cpp
     src/simple_exponential_indexer_test.cpp
     src/indexed_bond_test.cpp
+    src/interest_rate_test.cpp
 )
 
 add_executable(grumat 
