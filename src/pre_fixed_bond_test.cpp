@@ -1,10 +1,9 @@
 #include <gtest/gtest.h>
 #include "pre_fixed_bond.h"
+#include "time_utils.h"
 
 using core::pre_fixed_bond;
 using namespace std::chrono;
-
-const duration<int> one_year = duration<int>(31536000); 
 
 TEST(pre_fixed_bond, principal_before_effective_is_zero) {
   auto effective_date = steady_clock::now();
@@ -15,21 +14,21 @@ TEST(pre_fixed_bond, principal_before_effective_is_zero) {
 
 TEST(pre_fixed_bond, principal_after_one_year) {
   auto effective_date = steady_clock::now();
-  auto expiry_date = effective_date + one_year;
+  auto expiry_date = effective_date + core::years{1};
   pre_fixed_bond subject{100, 10, effective_date, expiry_date};
   EXPECT_EQ(subject.price_at(expiry_date), 110);
 }
 
 TEST(pre_fixed_bond, price_is_zero_after_expiry_date) {
   auto effective_date = steady_clock::now();
-  auto expiry_date = effective_date + one_year;
+  auto expiry_date = effective_date + core::years{1};
   pre_fixed_bond subject{100, 10, effective_date, expiry_date};
-  EXPECT_EQ(subject.price_at(effective_date + 2 * one_year), 0);
+  EXPECT_EQ(subject.price_at(effective_date + core::years{2}), 0);
 }
 
 TEST(pre_fixed_bond, compound_interest_test) {
   auto effective_date = steady_clock::now();
-  auto expiry_date = effective_date + 3 * one_year;
+  auto expiry_date = effective_date + core::years{3};
   pre_fixed_bond subject{100, 10, effective_date, expiry_date};
   EXPECT_EQ(subject.price_at(expiry_date), 133.1f);
 }

@@ -28,6 +28,7 @@ file(GLOB SOURCES
     src/indexed_bond.cpp
     src/interest_rate.h
     src/interest_rate.cpp
+    src/time_utils.h
 )
 
 file(GLOB TEST_FILES

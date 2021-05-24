@@ -2,11 +2,12 @@
 #include <iostream>
 #include "math.h"
 #include <chrono>
+#include "time_utils.h"
 
 using namespace std::chrono;
 
 static double years_delta(const steady_clock::time_point& from, const steady_clock::time_point& to) {
-    return duration_cast<hours>(to - from).count() / 8760.0;
+    return duration_cast<core::days>(to - from).count() / 365.0;
 }
 
 core::simple_exponential_indexer::simple_exponential_indexer(steady_clock::time_point series_start_date, interest_rate interest):
