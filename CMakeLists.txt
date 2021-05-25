@@ -29,6 +29,8 @@ file(GLOB SOURCES
     src/interest_rate.h
     src/interest_rate.cpp
     src/time_utils.h
+    src/asset.h
+    src/asset.cpp
 )
 
 file(GLOB TEST_FILES

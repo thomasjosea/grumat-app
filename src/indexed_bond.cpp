@@ -2,22 +2,21 @@
 #include "indexed_bond.h"
 #include "time_utils.h"
 
-core::indexed_bond::indexed_bond(float principal, steady_clock::time_point effective_date, float rate, bool is_multiple, std::shared_ptr<indexer> _bond_indexer):
-    _principal{principal},
-    _effective_date{effective_date},
+core::indexed_bond::indexed_bond(float principal, steady_clock::time_point effective_date, float rate, bool is_multiple, std::shared_ptr<indexer> _bond_indexer)
+: asset(effective_date, principal),
     _rate{rate},
     _is_multiple{is_multiple},
     _bond_indexer{_bond_indexer}
 {
 }
 
-float core::indexed_bond::price_at(const steady_clock::time_point& now) const {
-    if (now < _effective_date) {
+double core::indexed_bond::price_at(const steady_clock::time_point& now) const {
+    if (now < get_effective_date()) {
         return 0;
     }
-    auto principal = _principal;
+    auto principal = get_principal();
     auto day = core::days{1};
-    for (auto t = _effective_date; t < now; t += day) {
+    for (auto t = get_effective_date(); t < now; t += day) {
         auto index = _bond_indexer->get_rate_delta(t, t+day) / 100;
         auto interest = 0.0;
         if (_is_multiple) {
@@ -28,7 +27,4 @@ float core::indexed_bond::price_at(const steady_clock::time_point& now) const {
         principal += interest;
     }
     return principal;
-}
-
-core::indexed_bond::~indexed_bond() {
 }
