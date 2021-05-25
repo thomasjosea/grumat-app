@@ -2,11 +2,11 @@
 #include "indexed_bond.h"
 #include "time_utils.h"
 
-core::indexed_bond::indexed_bond(float principal, steady_clock::time_point effective_date, float rate, bool is_multiple, std::shared_ptr<indexer> _bond_indexer)
+core::indexed_bond::indexed_bond(float principal, steady_clock::time_point effective_date, float rate, bool is_multiple, std::shared_ptr<indexer> bond_indexer)
 : asset(effective_date, principal),
     _rate{rate},
     _is_multiple{is_multiple},
-    _bond_indexer{_bond_indexer}
+    _bond_indexer{bond_indexer}
 {
 }
 
