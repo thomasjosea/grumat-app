@@ -13,7 +13,7 @@ namespace core {
             steady_clock::time_point _expiry_date;
 
         public:
-            pre_fixed_bond(float principal, float annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date);
+            pre_fixed_bond(float principal, interest_rate annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date);
             double price_at(const steady_clock::time_point& now) const override;
             bool is_expired(const steady_clock::time_point& now) const;
     };

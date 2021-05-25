@@ -14,7 +14,7 @@ bool core::pre_fixed_bond::is_expired(const steady_clock::time_point& now) const
     return now > _expiry_date;
 }
 
-core::pre_fixed_bond::pre_fixed_bond(float principal, float annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date) 
+core::pre_fixed_bond::pre_fixed_bond(float principal, interest_rate annual_interest_rate, steady_clock::time_point effective_date, steady_clock::time_point expiry_date) 
     : asset(effective_date, principal),
     _exponential_growing_indexer{effective_date,annual_interest_rate},
     _expiry_date{expiry_date} {
