@@ -18,7 +18,14 @@ float core::indexed_bond::price_at(const steady_clock::time_point& now) const {
     auto principal = _principal;
     auto day = core::days{1};
     for (auto t = _effective_date; t < now; t += day) {
-        principal += principal * _bond_indexer->get_rate_delta(t, t+day) / 100 * _rate;
+        auto index = _bond_indexer->get_rate_delta(t, t+day) / 100;
+        auto interest = 0.0;
+        if (_is_multiple) {
+            interest = principal * index * _rate;
+        } else {
+            interest = principal * (index + _rate / 100 / 365.0);
+        }
+        principal += interest;
     }
     return principal;
 }
