@@ -1,8 +1,7 @@
 #pragma once
-#include <chrono>
-#include <memory>
 #include "simple_exponential_indexer.h"
 #include "asset.h"
+#include <chrono>
 
 namespace core {
     class indexed_bond: public asset {
