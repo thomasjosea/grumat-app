@@ -31,6 +31,9 @@ file(GLOB SOURCES
     src/time_utils.h
     src/asset.h
     src/asset.cpp
+    src/assets_dal.h
+    src/assets_dal_impl.h
+    src/assets_dal_impl.cpp
 )
 
 file(GLOB TEST_FILES
@@ -38,6 +41,7 @@ file(GLOB TEST_FILES
     src/simple_exponential_indexer_test.cpp
     src/indexed_bond_test.cpp
     src/interest_rate_test.cpp
+    src/assets_dal_impl_test.cpp
 )
 
 add_executable(grumat 
