@@ -19,3 +19,5 @@ steady_clock::time_point asset::get_effective_date() const {
 double asset::get_principal() const {
     return _principal;
 }
+
+asset::~asset() {}

@@ -11,6 +11,7 @@ namespace core {
             steady_clock::time_point get_effective_date() const;
             double get_principal() const;
             virtual double price_at(const steady_clock::time_point& now) const = 0;
+            virtual ~asset() = 0;
 
         private:
             steady_clock::time_point _effective_date;
