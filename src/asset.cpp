@@ -7,6 +7,11 @@ asset::asset(steady_clock::time_point effective_date, double principal):
     _principal{principal}
 {}
 
+asset::asset (const asset& other) :
+    _effective_date{other._effective_date},
+    _principal{other._principal} 
+{}
+
 steady_clock::time_point asset::get_effective_date() const {
     return _effective_date;
 }
